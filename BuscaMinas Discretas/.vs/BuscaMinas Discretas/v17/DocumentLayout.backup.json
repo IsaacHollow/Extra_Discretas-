@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\isaac\\Downloads\\Extra_Discretas-\\BuscaMinas Discretas\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{1A0A531B-8289-4EC0-A151-04BDF510F930}|BuscaMinas Discretas\\BuscaMinas Discretas.vcxproj|C:\\Users\\isaac\\Downloads\\Extra_Discretas-\\BuscaMinas Discretas\\BuscaMinas Discretas\\Mina.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{1A0A531B-8289-4EC0-A151-04BDF510F930}|BuscaMinas Discretas\\BuscaMinas Discretas.vcxproj|solutionrelative:BuscaMinas Discretas\\Mina.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1A0A531B-8289-4EC0-A151-04BDF510F930}|BuscaMinas Discretas\\BuscaMinas Discretas.vcxproj|C:\\Users\\isaac\\Downloads\\Extra_Discretas-\\BuscaMinas Discretas\\BuscaMinas Discretas\\BuscaMinas Discretas.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{1A0A531B-8289-4EC0-A151-04BDF510F930}|BuscaMinas Discretas\\BuscaMinas Discretas.vcxproj|solutionrelative:BuscaMinas Discretas\\BuscaMinas Discretas.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
@@ -23,6 +27,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Mina.h",
+              "DocumentMoniker": "C:\\Users\\isaac\\Downloads\\Extra_Discretas-\\BuscaMinas Discretas\\BuscaMinas Discretas\\Mina.h",
+              "RelativeDocumentMoniker": "BuscaMinas Discretas\\Mina.h",
+              "ToolTip": "C:\\Users\\isaac\\Downloads\\Extra_Discretas-\\BuscaMinas Discretas\\BuscaMinas Discretas\\Mina.h",
+              "RelativeToolTip": "BuscaMinas Discretas\\Mina.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-25T23:00:44.681Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "BuscaMinas Discretas.cpp",
               "DocumentMoniker": "C:\\Users\\isaac\\Downloads\\Extra_Discretas-\\BuscaMinas Discretas\\BuscaMinas Discretas\\BuscaMinas Discretas.cpp",
               "RelativeDocumentMoniker": "BuscaMinas Discretas\\BuscaMinas Discretas.cpp",
