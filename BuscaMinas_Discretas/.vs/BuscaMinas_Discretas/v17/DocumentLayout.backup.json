@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\isaac\\Downloads\\Extra_Discretas-\\BuscaMinas_Discretas\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1AF6E9E5-ACD8-447B-A495-CCE4FC9AFA2C}|BuscaMinas_Discretas\\BuscaMinas_Discretas.pyproj|C:\\Users\\isaac\\Downloads\\Extra_Discretas-\\BuscaMinas_Discretas\\BuscaMinas_Discretas\\BuscaMinas_Discretas.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{1AF6E9E5-ACD8-447B-A495-CCE4FC9AFA2C}|BuscaMinas_Discretas\\BuscaMinas_Discretas.pyproj|solutionrelative:BuscaMinas_Discretas\\BuscaMinas_Discretas.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BuscaMinas_Discretas.py",
+              "DocumentMoniker": "C:\\Users\\isaac\\Downloads\\Extra_Discretas-\\BuscaMinas_Discretas\\BuscaMinas_Discretas\\BuscaMinas_Discretas.py",
+              "RelativeDocumentMoniker": "BuscaMinas_Discretas\\BuscaMinas_Discretas.py",
+              "ToolTip": "C:\\Users\\isaac\\Downloads\\Extra_Discretas-\\BuscaMinas_Discretas\\BuscaMinas_Discretas\\BuscaMinas_Discretas.py",
+              "RelativeToolTip": "BuscaMinas_Discretas\\BuscaMinas_Discretas.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-04-25T23:06:35.776Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
