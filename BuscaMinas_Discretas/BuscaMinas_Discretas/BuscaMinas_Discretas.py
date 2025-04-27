@@ -1,18 +1,27 @@
-
-class MiClase:
-  
-    def __init__(self, nombre, edad):
-        self.nombre = nombre
-        self.edad = edad
+import tkinter as tk
+import random
 
 
-    def saludar(self):
-        print(f"Hola, mi nombre es {self.nombre} y tengo {self.edad} anos.")
+WIDTH = 25  # cantidad de columnas
+HEIGHT = 15  # cantidad de filas
 
+def create_grid(root):
+    for y in range(HEIGHT):
+        for x in range(WIDTH):
+            button = tk.Button(root, width=3, height=1, command=lambda x=x, y=y: click_cell(x, y))
+            button.grid(row=y, column=x)
+            buttons[(x, y)] = button
 
-if __name__ == "__main__":
-    
-    persona = MiClase("Isaac", 21)
-    
-   
-    persona.saludar()
+def click_cell(x, y):
+    print(f"Click en celda ({x}, {y})")
+    buttons[(x, y)].config(text="0")  # luego aqui puede mostrar mina o numero
+
+# Crear ventana
+root = tk.Tk()
+root.title("Buscaminas Demo")
+
+buttons = {}  # Diccionario para guardar los botones
+
+create_grid(root)
+
+root.mainloop()
