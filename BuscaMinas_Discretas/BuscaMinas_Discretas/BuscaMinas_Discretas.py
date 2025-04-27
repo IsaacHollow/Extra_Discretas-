@@ -1,3 +1,22 @@
+def opcion1():
+    print("Hola, has elegido la opcion 1")
+
+def opcion2():
+    print("Hola, has elegido la opcion 2")
+
+
+opciones = {
+    1: opcion1,
+    2: opcion2,
+}
+
+print("Elige una opcion (1, 2):")
+opcion = int(input())
+
+opciones.get(opcion, lambda: print("Opcion no valida"))()
+
+
+"""
 import tkinter as tk
 import random
 
@@ -25,3 +44,5 @@ buttons = {}  # Diccionario para guardar los botones
 create_grid(root)
 
 root.mainloop()
+
+"""
