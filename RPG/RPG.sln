@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35931.197 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BuscaMinas_Discretas", "BuscaMinas_Discretas\BuscaMinas_Discretas.pyproj", "{1AF6E9E5-ACD8-447B-A495-CCE4FC9AFA2C}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "RPG", "RPG\RPG.pyproj", "{3E28B1BB-6E68-4D68-9678-BBD8515B75B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +11,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1AF6E9E5-ACD8-447B-A495-CCE4FC9AFA2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1AF6E9E5-ACD8-447B-A495-CCE4FC9AFA2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E28B1BB-6E68-4D68-9678-BBD8515B75B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E28B1BB-6E68-4D68-9678-BBD8515B75B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {9677FD3E-35B0-4F25-98D3-7FDF4D2E8B7A}
+		SolutionGuid = {F092F8BC-21A2-47F5-A7A9-4DBD60CB73B0}
 	EndGlobalSection
 EndGlobal

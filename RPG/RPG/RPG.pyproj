@@ -2,16 +2,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>1af6e9e5-acd8-447b-a495-cce4fc9afa2c</ProjectGuid>
+    <ProjectGuid>3e28b1bb-6e68-4d68-9678-bbd8515b75b0</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>BuscaMinas_Discretas.py</StartupFile>
+    <StartupFile>RPG.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>BuscaMinas_Discretas</Name>
-    <RootNamespace>BuscaMinas_Discretas</RootNamespace>
-    <InterpreterId>MSBuild|env1|$(MSBuildProjectFullPath)</InterpreterId>
+    <Name>RPG</Name>
+    <RootNamespace>RPG</RootNamespace>
+    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,15 +22,13 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BuscaMinas_Discretas.py" />
-    <Compile Include="clase1.py" />
-    <Compile Include="coleccion.py" />
+    <Compile Include="RPG.py" />
   </ItemGroup>
   <ItemGroup>
-    <Interpreter Include="env1\">
-      <Id>env1</Id>
+    <Interpreter Include="env\">
+      <Id>env</Id>
       <Version>3.13</Version>
-      <Description>env1 (Python 3.13)</Description>
+      <Description>env (Python 3.13)</Description>
       <InterpreterPath>Scripts\python.exe</InterpreterPath>
       <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
