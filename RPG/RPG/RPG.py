@@ -1,96 +1,68 @@
 import tkinter as tk
 from tkinter import messagebox
 
-# Definir las clases para el juego
-class Personaje:
-    def __init__(self, nombre, salud, ataque):
-        self.nombre = nombre
-        self.salud = salud
-        self.ataque = ataque
+# Funciones principales
+def iniciar_juego():
+    # Ocultar la pantalla inicial
+    pantalla_principal.pack_forget()
 
-    def recibir_dano(self, dano):
-        self.salud -= dano
+    # Crear pantalla de juego
+    juego_frame.pack()
 
-    def atacar(self, enemigo):
-        enemigo.recibir_dano(self.ataque)
-        return f"{self.nombre} ataco a {enemigo.nombre} y caus {self.ataque} de dano."
+    # Mostrar informacion inicial del juego
+    etiqueta_info.config(text="Salud: 100 de vida\nEnemigo frente a ti con 50 HP.")
+    
+def atacar():
+    mensaje = "Enemigo derrotado. Has ganado."
+    messagebox.showinfo("Ganaste", mensaje)
+    ventana.quit()
 
-class Mapa:
-    def __init__(self):
-        self.lugares = {
-            "Ciudad": ["Bosque", "Montana"],
-            "Bosque": ["Ciudad", "Cueva"],
-            "Montana": ["Ciudad"],
-            "Cueva": ["Bosque"]
-        }
+def escapar():
+    mensaje = "No has podido escapar. Has muerto."
+    messagebox.showinfo("Perdiste", mensaje)
+    ventana.quit()
 
-    def mover(self, lugar_actual, nuevo_lugar):
-        if nuevo_lugar in self.lugares[lugar_actual]:
-            return f"Te has movido a {nuevo_lugar}."
-        else:
-            return "No puedes ir a ese lugar desde aqui."
+def moverse():
+    mensaje = "No puedes moverte. Elige otra accion."
+    etiqueta_info.config(text=mensaje)
+
+def salir():
+    ventana.quit()
 
 # Crear la ventana principal
-def crear_ventana():
-    ventana = tk.Tk()
-    ventana.title("RPG Basico")
+ventana = tk.Tk()
+ventana.title("Juego Basico")
 
-    # Crear personajes
-    jugador = Personaje("Heroe", 100, 20)
-    enemigo = Personaje("Enemigo", 50, 10)
-    mapa = Mapa()
+# Pantalla principal
+pantalla_principal = tk.Frame(ventana)
+pantalla_principal.pack()
 
-    lugar_actual = "Ciudad"
+# Botones principales
+boton_jugar = tk.Button(pantalla_principal, text="Jugar", command=iniciar_juego)
+boton_jugar.pack(pady=10)
 
-    # Funciones para manejar los botones
-    def atacar():
-        mensaje = jugador.atacar(enemigo)
-        etiqueta_resultado.config(text=mensaje)
-        etiqueta_salud_enemigo.config(text=f"Salud del Enemigo: {enemigo.salud}")
+boton_reglas = tk.Button(pantalla_principal, text="Reglas", command=lambda: messagebox.showinfo("Reglas", "Ataca al enemigo para ganar, o escapa para intentar huir."))
+boton_reglas.pack(pady=10)
 
-    def mover():
-        nonlocal lugar_actual
-        lugar = entrada_lugar.get()
-        if lugar:
-            mensaje = mapa.mover(lugar_actual, lugar)
-            lugar_actual = lugar if "Te has movido" in mensaje else lugar_actual
-            etiqueta_resultado.config(text=mensaje)
-            etiqueta_lugar_actual.config(text=f"Lugar actual: {lugar_actual}")
-        else:
-            messagebox.showerror("Error", "Por favor, ingresa un lugar valido.")
+boton_salir = tk.Button(pantalla_principal, text="Salir", command=salir)
+boton_salir.pack(pady=10)
 
-    # Etiquetas
-    etiqueta_titulo = tk.Label(ventana, text="Bienvenido al RPG", font=("Arial", 16))
-    etiqueta_titulo.pack(pady=10)
+# Pantalla de juego
+juego_frame = tk.Frame(ventana)
 
-    etiqueta_resultado = tk.Label(ventana, text="Esperando accion...", font=("Arial", 12))
-    etiqueta_resultado.pack(pady=10)
+etiqueta_info = tk.Label(juego_frame, text="Te encuentras frente a un enemigo con 50 HP.", font=("Arial", 12))
+etiqueta_info.pack(pady=20)
 
-    etiqueta_salud_jugador = tk.Label(ventana, text=f"Salud de {jugador.nombre}: {jugador.salud}")
-    etiqueta_salud_jugador.pack(pady=5)
+# Botones de accion en el juego
+boton_atacar = tk.Button(juego_frame, text="Atacar", command=atacar)
+boton_atacar.pack(pady=10)
 
-    etiqueta_salud_enemigo = tk.Label(ventana, text=f"Salud del Enemigo: {enemigo.salud}")
-    etiqueta_salud_enemigo.pack(pady=5)
+boton_moverse = tk.Button(juego_frame, text="Moverse", command=moverse)
+boton_moverse.pack(pady=10)
 
-    etiqueta_lugar_actual = tk.Label(ventana, text=f"Lugar actual: {lugar_actual}")
-    etiqueta_lugar_actual.pack(pady=5)
+boton_escapar = tk.Button(juego_frame, text="Escapar", command=escapar)
+boton_escapar.pack(pady=10)
 
-    # Entrada para mover al jugador
-    etiqueta_ingresar_lugar = tk.Label(ventana, text="Ingresa un lugar para moverte:")
-    etiqueta_ingresar_lugar.pack(pady=5)
+# Ejecutar la ventana
+ventana.mainloop()
 
-    entrada_lugar = tk.Entry(ventana)
-    entrada_lugar.pack(pady=5)
-
-    # Botones de accion
-    boton_atacar = tk.Button(ventana, text="Atacar", command=atacar)
-    boton_atacar.pack(pady=5)
-
-    boton_mover = tk.Button(ventana, text="Mover", command=mover)
-    boton_mover.pack(pady=5)
-
-    # Ejecutar la ventana
-    ventana.mainloop()
-
-# Llamar la funcion para crear la ventana
-crear_ventana()
