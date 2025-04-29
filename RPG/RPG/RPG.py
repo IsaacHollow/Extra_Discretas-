@@ -1,3 +1,4 @@
+
 import tkinter as tk
 from tkinter import messagebox
 
@@ -65,4 +66,3 @@ boton_escapar.pack(pady=10)
 
 # Ejecutar la ventana
 ventana.mainloop()
-
