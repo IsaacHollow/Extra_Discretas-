@@ -35,5 +35,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['C:\\Users\\isaac\\Downloads\\Extra_Discretas-\\RPG\\RPG\\miicono.ico'],
+    icon=['C:\\Users\\isaac\\Downloads\\Extra_Discretas-\\RPG\\icono2.ico'],
 )
