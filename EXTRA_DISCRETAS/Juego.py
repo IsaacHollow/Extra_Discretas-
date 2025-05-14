@@ -1,7 +1,7 @@
 import tkinter as tk
 import random
 
-class JuegoGrafo:
+class Juego:
     def __init__(self, root):
         self.root = root
         self.N = 5
@@ -88,7 +88,7 @@ class JuegoGrafo:
 
         btn_retry = tk.Button(self.root, text="Volver a jugar",
                               font=("Arial", 16),
-                              command=lambda: JuegoGrafo(self.root))
+                              command=lambda: Juego(self.root))
         btn_retry.pack(pady=10)
 
         btn_salir = tk.Button(self.root, text="Salir", font=("Arial", 16),
