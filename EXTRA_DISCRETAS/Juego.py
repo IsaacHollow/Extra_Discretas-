@@ -1,29 +1,29 @@
-import tkinter as tk
-import random
+import tkinter as tk #Libreria thinker
+import random  #Libreria random para la salida
 
-class Juego:
-    def __init__(self, root):
-        self.root = root
-        self.N = 5
-        self.radio = 20
-        self.score = 5000.0
+class Juego: 
+    def __init__(self, root): #Constructor
+        self.root = root # Guardamos ROOT
+        self.N = 5 #Se crea el tamano de la matricula
+        self.radio = 20 #Radio de los circulos
+        self.score = 5000.0 #Puntaje Inicial del juego
 
-        self._setup_ui()
-        self._init_game()
+        self._setup_ui() # Metodo para Dibujar la interfaz del juego
+        self._init_game() # Metodo para colocar la posicion del juego
 
-    def _setup_ui(self):
+    def _setup_ui(self): #Metodo para la interfaz grafica
         for w in self.root.winfo_children():
-            w.destroy()
+            w.destroy()  #Borra lo que hay en la ventana (Ventana de inicio)
 
         self.lbl_score = tk.Label(self.root, text=f"Puntaje: {int(self.score)}",
                                   font=("Arial", 16))
-        self.lbl_score.pack(pady=5)
+        self.lbl_score.pack(pady=5) #Mostramos el puntaje, eligiendo el tipo de texto, color y tamanio
 
-        self.canvas = tk.Canvas(self.root, bg="white", width=600, height=600)
-        self.canvas.pack()
+        self.canvas = tk.Canvas(self.root, bg="white", width=600, height=400) #bg= color del fondo, width = ancho,  height=600. 
+        self.canvas.pack() #canvas es el area donde se dibuja, el canvas, pack() muestra en la pantalla
 
-        self.cell_coords = {}
-        for i in range(self.N):
+        self.cell_coords = {} #Llamamos a un diccionario, Cuadricula(i,j) y coordenadas (x,y)
+        for i in range(self.N): 
             for j in range(self.N):
                 x = 50 + i * 60
                 y = 50 + j * 60
