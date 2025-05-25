@@ -23,6 +23,7 @@
   <ItemGroup>
     <Compile Include="InterfazGrafica.py" />
     <Compile Include="Juego.py" />
+    <Compile Include="Juego2.py" />
     <Compile Include="main.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

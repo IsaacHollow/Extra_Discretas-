@@ -27,7 +27,6 @@ class GrafoJuego:  #Clase
             "rules": (450, 300),
             "exit": (300, 400),
             "credits": (150,300),
-            "C" : (100,500)
         } #Creamos las cordenadas para luego hacer los ovalos (Botones)
         
         coords2 = {
