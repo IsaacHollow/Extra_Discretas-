@@ -4,7 +4,7 @@ import random  #Libreria random para la salida
 class Juego: 
     def __init__(self, root): #Constructor
         self.root = root # Guardamos ROOT
-        self.N = 5 #Se crea el tamano de la matricula
+        self.N = 7 #Se crea el tamano de la matricula
         self.radio = 20 #Radio de los circulos
         self.score = 5000.0 #Puntaje Inicial del juego
 
@@ -19,7 +19,7 @@ class Juego:
                                   font=("Arial", 16))
         self.lbl_score.pack(pady=5) #Mostramos el puntaje, eligiendo el tipo de texto, color y tamanio
 
-        self.canvas = tk.Canvas(self.root, bg="white", width=600, height=400) #bg= color del fondo, width = ancho,  height=600. 
+        self.canvas = tk.Canvas(self.root, bg="white", width=1000, height=1000) #bg= color del fondo, width = ancho,  height=600. 
         self.canvas.pack() #canvas es el area donde se dibuja, el canvas, pack() muestra en la pantalla
 
         self.cell_coords = {} #Llamamos a un diccionario, Cuadricula(i,j) y coordenadas (x,y)
@@ -28,7 +28,13 @@ class Juego:
                 x = 50 + i * 60
                 y = 50 + j * 60
                 self.cell_coords[(i,j)] = (x, y)
-
+                for (i, j), (x, y) in self.cell_coords.items():
+                 neighbors = [ (i-1, j), (i+1, j), (i, j-1), (i, j+1) ]
+                 for ni, nj in neighbors:
+                    if (ni, nj) in self.cell_coords:
+                     x2, y2 = self.cell_coords[(ni, nj)]
+                     self.canvas.create_line(x, y, x2, y2, fill="lightgray")
+  
         self.ovals = {}
         for (i,j), (x,y) in self.cell_coords.items():
             oid = self.canvas.create_oval(x-self.radio, y-self.radio,
@@ -37,6 +43,7 @@ class Juego:
             self.ovals[(i,j)] = oid
             self.canvas.tag_bind(oid, "<Button-1>",
                                  lambda e, ii=i, jj=j: self._on_click(ii,jj))
+
 
     def _init_game(self):
         c = self.N // 2
@@ -47,7 +54,7 @@ class Juego:
         positions.remove(self.goal_azul)
         self.goal_verde = random.choice(positions)
 
-        self._color_cell(self.current, "red")
+        self._color_cell(self.current, "blue")
         self._color_cell(self.goal_azul, "gray")
         self._color_cell(self.goal_verde, "gray")
 
@@ -69,7 +76,7 @@ class Juego:
 
         self._color_cell(self.current, "white")
         self.current = (i,j)
-        self._color_cell(self.current, "red")
+        self._color_cell(self.current, "blue")
 
         self.score -= 12.5
         self.lbl_score.config(text=f"Puntaje: {int(self.score)}")
