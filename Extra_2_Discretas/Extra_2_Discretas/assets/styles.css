@@ -1,0 +1,121 @@
+/* Estilos generales */
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* Fondo de pantalla con patrón de puntos */
+  background-color: #000000;
+  background-image:
+    radial-gradient(rgb(251, 255, 31) 1px, transparent 1px),
+    radial-gradient(rgb(255, 255, 255) 1px, transparent 1px);
+  background-size: 100px 100px;
+  background-position: 0 0, 50px 50px;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Títulos */
+h2 {
+  text-align: center;
+  color: #ffffff;
+  margin-top: 20px;
+}
+
+h3 {
+  text-align: center;
+  color: #34495e;
+  margin-bottom: 30px;
+}
+
+/* Botones en serie */
+
+.button-row_options {
+  display: flex;
+  justify-content: left;
+  gap: 15px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+
+button {
+  background-color: #ffd700; /* diseño de los botones */
+  color: #000; 
+  border: none;
+  padding: 10px 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #f39c12; /* Tonalidad ligeramente más oscura */
+}
+
+/* Contenedores de opciones, miembros, estadísticas */
+#members-container, #stats-container {
+  
+    text-align: center;
+    background-color: #ecf0f1;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 0 auto 20px auto;
+  width: 80%;
+}
+
+#options-container {
+    background-color: #ecf0f1;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 0 auto 20px auto;
+  width: 80%;
+}
+
+/* Etiquetas e inputs */
+label {
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
+}
+
+input, .Select-control {
+  margin-top: 5px;
+  padding: 6px;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+}
+
+/* Contenedor del grafo con fondo sólido */
+#cytoscape-graph {
+  background-color: #000000; 
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  margin: 20px auto;
+  width: 95%;
+  height: 1000px;
+}
+
+/* Mensajes debajo del grafo */
+#click-output, #graph-stats {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #ffffff;
+}
