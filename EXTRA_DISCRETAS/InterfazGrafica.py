@@ -4,7 +4,7 @@ from Juego import Juego #importa la clase juego
 
 def iniciar_juego():
     root = tk.Tk()   #Crea la ventana
-    root.title("Juego de Grafos") #El titulo de la ventana
+    root.title("Find the Exit") #El titulo de la ventana
     root.geometry("600x700") #El tamanio de la ventana
     GrafoJuego(root) #Crea la pantalla de inicio
     root.mainloop() #Hace que no se cierre inmediatamente la ventana
@@ -12,9 +12,9 @@ def iniciar_juego():
 class GrafoJuego:  #Clase
     def __init__(self, root):  #Constructor
         self.root = root #Se "Guarda la ventana"
-        self.pantalla_inicio() #Llama al metodo 
+        self.pantallaInicio() #Llama al metodo 
 
-    def pantalla_inicio(self):
+    def pantallaInicio(self):
         for w in self.root.winfo_children():   #Borra todo lo que hay en pantalla
             w.destroy()
 
@@ -44,10 +44,8 @@ class GrafoJuego:  #Clase
                                      lambda e, n=name: self.click_inicio(n)) #Llamamos al metodo click_inicio
 
 
-        self.canvas.create_line(*coords["play"], *coords["rules"], width=3) #Crea linea, width es el ancho
-        #self.canvas.create_line(*coords["rules"], *coords["exit"], width=3) #Crea linea
+        self.canvas.create_line(*coords["play"], *coords["rules"], width=3) #Crea linea 
         self.canvas.create_line(*coords["play"], *coords["credits"], width=3)
-        #self.canvas.create_line(*coords["credits"], *coords["exit"], width=3)
         self.canvas.create_line(*coords["play"], *coords["exit"], width=3)
 
         for name, (cx, cy) in coords.items():
