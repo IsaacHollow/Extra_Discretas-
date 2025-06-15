@@ -14,7 +14,6 @@ from sklearn.metrics import classification_report
 import os
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
-
 G = nx.karate_club_graph() #Karate_club es un grafo ya predeterminado
 """
 print(G)
@@ -30,7 +29,7 @@ print(f'{G.name}: {len(G.nodes)} vertices, {len(G.edges)} edges')
 print(G.number_of_nodes())
 """
 # Input featuers (no information on nodes):
-X = torch.eye(G.number_of_nodes()) #hace una matriz identidad del tamaño de la cantidad de nodos
+X = torch.eye(G.number_of_nodes()) #hace una matriz identidad del tamano de la cantidad de nodos
 #print(X)
 
 # Create ground-truth labels
@@ -66,7 +65,7 @@ L = D - A
 print((L.transpose() == L).all())
 
 print(np.trace(L) == 2 * G.number_of_edges()) #np.trace devuelve la suma de los elementos diagonales en L
-#verifica si la suma de los grados es igual cocal doble del número de aristas, lo cual debe cumplirse siempre para un grafo no dirigido.
+#verifica si la suma de los grados es igual cocal doble del numero de aristas, lo cual debe cumplirse siempre para un grafo no dirigido.
 
 # Sum of colums/rows is zero
 print(np.sum(L, axis=1))#imprime la suma de las fila de la matriz laplaciana
@@ -76,7 +75,6 @@ print(np.sum(L, axis=0))#imprime la suma de las fila de la matriz laplaciana
 # Compute the eigevanlues and eigenvector
 w, Phi = np.linalg.eigh(L) #w calcula los auto valores y phi el primer auto vector
 
-
 plt.plot(w); plt.xlabel(r'$\lambda$'); plt.title('Spectrum')
 plt.show()
 
@@ -85,7 +83,7 @@ plt.show()
 A = nx.to_scipy_sparse_array(G, weight=None)
 # Convierte la matriz dispersa A a una matriz densa (NumPy array).
 A = np.array(A.todense())
-# Crea una matriz identidad del mismo tamaño que A (diagonal de 1s, resto ceros).
+# Crea una matriz identidad del mismo tamano que A (diagonal de 1s, resto ceros).
 I = np.eye(A.shape[0])
 # Suma la matriz identidad a A: esto agrega bucles en los nodos (autoconexiones).
 A = A + I
@@ -102,6 +100,7 @@ L =  D_inv_h @ A @ D_inv_h #realiza la operacion de la normalizacion
 import torch.nn as nn
 from typing import List
 
+# aplica una capa de convolucion en un grafo
 class GCNLayer(nn.Module):
     def __init__(self, 
                  graph_L: torch.Tensor, 
@@ -110,33 +109,30 @@ class GCNLayer(nn.Module):
                  max_deg: int = 1
         ):
         """
-        :param graph_L: the normalized graph laplacian. It is all the information we need to know about the graph
-        :param in_features: the number of input features for each node
-        :param out_features: the number of output features for each node
-        :param max_deg: how many power of the laplacian to consider, i.e. the q in the spacial formula
+        :param graph_L: el laplaciano del grafo normalizado. Contiene toda la informacion que necesitamos sobre el grafo.
+        :param in_features: el numero de caracteristicas de entrada para cada nodo.
+        :param out_features: el numero de caracteristicas de salida para cada nodo.
+        :param max_deg: la potencia del laplaciano a considerar, es decir, la q en la formula espacial.
         """
         super().__init__()
         
-        # Each FC is like the alpha_k matrix, with the last one including bias
+        # Cada FC es como la matriz alpha_k, donde la ultima incluye la bias
         self.fc_layers = nn.ModuleList()
         for i in range(max_deg - 1):
-            self.fc_layers.append(nn.Linear(in_features, out_features, bias=False))     # q - 1 layers without bias
-        self.fc_layers.append(nn.Linear(in_features, out_features, bias=True))          # last one with bias
+            self.fc_layers.append(nn.Linear(in_features, out_features, bias=False))     # q - 1 capas sin bias
+        self.fc_layers.append(nn.Linear(in_features, out_features, bias=True))          # el ultimo con bias
         
-        # Pre-calculate beta_k(L) for every key
+        # Pre-calcular beta_k(L) para cada una
         self.laplacians = self.calc_laplacian_functions(graph_L, max_deg)
         
-    def calc_laplacian_functions(self, 
-                                 L: torch.Tensor, 
-                                 max_deg: int
-        ) -> List[torch.Tensor]:
+    def calc_laplacian_functions(self, L: torch.Tensor, max_deg: int) -> List[torch.Tensor]:
         """
-        Compute all the powers of L from 1 to max_deg
+        Calcular todas las potencias de L desde 1 hasta max_deg
 
-        :param L: a square matrix
-        :param max_deg: number of powers to compute
+        :parametro L: una matriz cuadrada
+        :parametro max_deg: numero de potencias a calcular
 
-        :returns: a list of tensors, where the element i is L^{i+1} (i.e. start counting from 1)
+        :devuelve: una lista de tensores, donde el elemento i es L^{i+1} (es decir, se empieza a contar desde 1)
         """
         res = [L]
         for _ in range(max_deg-1):
@@ -145,16 +141,17 @@ class GCNLayer(nn.Module):
         
     def forward(self, X: torch.Tensor) -> torch.Tensor:
         """
-        Perform one forward step of graph convolution
+        Realizar un paso hacia adelante en la convolucion del grafo
 
-        :params X: input features maps [vertices, in_features]
-        :returns: output features maps [vertices, out_features]
+        :params X: mapas de caracteristicas de entrada [vertices, caracteristicas_de_entrada]
+        :returns: mapas de caracteristicas de salida [vertices, caracteristicas_de_salida]
         """
+
         Z = torch.tensor(0.)
         for k, fc in enumerate(self.fc_layers):
             L = self.laplacians[k]
-            LX = torch.mm(L, X)
-            Z = fc(LX) + Z
+            LX = torch.mm(L, X)  # Aplica la propagacion
+            Z = fc(LX) + Z       # Aplica transformacion lineal y acumula
         
         return torch.relu(Z)
     
@@ -169,46 +166,89 @@ gcn2 = nn.Sequential(
     GCNLayer(graph_L, hidden_dim, out_features, max_deg),
     nn.LogSoftmax(dim=1)
 )
+"""
+plot_de_perdidas codigo propio de 
+Jose David Chavarria Villalobos
+Isaac Sibaja Cortez
+Erick Zamora Cruz
+"""
+def plot_de_perdidas(losses):
 
+    plt.plot(losses)                    # Dibuja la curva de perdidas
+    plt.xlabel("epoch")                # Etiqueta del eje X
+    plt.ylabel("perdida")                 # Etiqueta del eje Y
+    plt.title("perdida")                   
+    plt.grid(True)                     # Activa cuadricula
+    plt.show()                         
 
 
 def train_node_classifier(model, optimizer, X, y, epochs=60, print_every=10):
     y_pred_epochs = []
+    loss_values = []
     for epoch in range(epochs+1):
         y_pred = model(X)  # Compute on all the graph
         y_pred_epochs.append(y_pred.detach())
-
         # Semi-supervised: only use labels of the Instructor and Admin nodes
         labelled_idx = [ID_ADMIN, ID_INSTR]
         loss = F.nll_loss(y_pred[labelled_idx], y[labelled_idx])  # loss on only two nodes
-
+        loss_values.append(loss.item()) #nuevo
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
 
         if epoch % print_every == 0:
             print(f'Epoch {epoch:2d}, loss={loss.item():.5f}')
-    return y_pred_epochs
+    print("-"*50)
+    print(loss_values)
+    print("-"*50)
+    return y_pred_epochs, loss_values 
 
-optimizer = torch.optim.Adam(gcn2.parameters(), lr=0.01)
+"""
+codigo propio de 
+Jose David Chavarria Villalobos
+Isaac Sibaja Cortez
+Erick Zamora Cruz
+"""
 
-y_pred_epochs = train_node_classifier(gcn2, optimizer, X, labels)
+def ver_predicciones(G, y_true, y_pred): #G es el grafo, y_true son las clases verdaderas, y_pred son las clases predichas.
+    pos = nx.spring_layout(G)  # Posiciones de los nodos
+
+    # Dibujar nodos correctamente clasificados (verde) y mal clasificados (rojo)
+    correctos = [n for n in G.nodes if y_true[n] == y_pred[n]]
+    incorrectos = [n for n in G.nodes if y_true[n] != y_pred[n]]
+
+    nx.draw_networkx_nodes(G, pos, nodelist=correctos, node_color='lightgreen')
+    nx.draw_networkx_nodes(G, pos, nodelist=incorrectos, node_color='salmon')
+    nx.draw_networkx_edges(G, pos, alpha=0.5)
+    nx.draw_networkx_labels(G, pos)
+
+    plt.title("Predicciones")
+    plt.axis("off")
+    plt.show()
+    
+# ENTRENAMIENTO del modelo GCN
+epochs = 100  # Aumenta el numero de epocas para tener una curva significativa
+all_losses = []  # Aqui se almacenaran las listas de perdidas de cada ejecucion
+i=0
+for i in range(1):
+    print(f"\n--- Entrenamiento {i + 1} ---")
+    # Re-crear modelo y optimizador en cada iteracion para que no use pesos anteriores
+    gcn_model = nn.Sequential(
+        GCNLayer(graph_L, in_features, hidden_dim, max_deg),
+        GCNLayer(graph_L, hidden_dim, out_features, max_deg),
+        nn.LogSoftmax(dim=1)
+    )
+    optimizer = torch.optim.Adam(gcn_model.parameters(), lr=0.01)
+
+    _, loss_values = train_node_classifier(gcn_model, optimizer, X, labels, epochs=100)
+    all_losses.append(loss_values)
 
 y_pred = torch.argmax(gcn2(X), dim=1).detach().numpy()
-y = labels.numpy()
-print(classification_report(y, y_pred, target_names=['I','A']))
+y_true = labels.numpy()
+print(classification_report(y_true, y_pred, target_names=['Mr. Hi', 'Officer']))
 
-mlp = nn.Sequential(
-    nn.Linear(in_features, hidden_dim),
-    nn.ReLU(),
-    nn.Linear(hidden_dim, out_features),
-    nn.ReLU(),
-    nn.LogSoftmax(dim=1)
-)
+plot_de_perdidas(loss_values)
+ver_predicciones(G, y_true, y_pred)
 
-optimizer = torch.optim.Adam(mlp.parameters(), lr=0.01)
-_ = train_node_classifier(mlp, optimizer, X, labels, epochs=2000, print_every=500)
-
-print(classification_report(labels.numpy(), torch.argmax(mlp(X), dim=1).detach().numpy(), target_names=['I','A']))
 
 
