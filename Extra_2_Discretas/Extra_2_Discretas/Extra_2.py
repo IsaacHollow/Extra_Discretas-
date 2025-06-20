@@ -1,3 +1,14 @@
+"""
+Prompts ChatGPT (ezamc26@gmail.com):
+1) Optimiza el código de la aplicación dash Cytoscape para visualizar grafos de mayor tamaño
+
+2) Revisa funcionalidades para agregar, eliminar y conectar nodos, así como encontrar caminos entre nodos utilizando algoritmos de recorrido BFS, DFS y Dijkstra
+
+3) Implementa un codigo de css para visualizar los nodos y aristas del grafo de manera más clara
+"""
+
+#pip install -r Dependencias.txt 
+
 # Importación de librerías necesarias
 import dash
 import json
