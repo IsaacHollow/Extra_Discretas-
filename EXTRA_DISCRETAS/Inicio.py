@@ -1,4 +1,4 @@
-import tkinter as tk #Libreri tkinter
+import tkinter as tk #Libreria tkinter
 import tkinter.messagebox 
 from Juego import Juego #importa la clase juego
 
